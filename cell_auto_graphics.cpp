@@ -90,7 +90,7 @@ int main(int argc, char* argv[]) {
     int SCREEN_WIDTH = 1280;
     int SCREEN_HEIGHT = 720;
 
-    uint8_t rule = 73; // Try 30, 90, 110, 120, 62, 73, 45, 57, 60, 68, 75; Favourite: 73
+    uint8_t rule = 54; // Try 30, 90, 110, 120, 62, 73, 45, 57, 60, 68, 75; Favourite: 73
     //std::cin >> rule;
     size_t auto_size = 640;
 
@@ -101,7 +101,7 @@ int main(int argc, char* argv[]) {
     Automaton cell_auto(rule, auto_size, true);
 
     cell_auto.randomize_state(190.310);
-    cell_auto.one_cell_state();
+    //cell_auto.one_cell_state();
 
     auto res = SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_TIMER);
     if (0 != res)
@@ -109,7 +109,6 @@ int main(int argc, char* argv[]) {
 
     SDL_Window *main_window = NULL;
     SDL_Renderer *main_window_renderer = NULL;
-    SDL_Texture *main_texture = NULL;
 
     main_window = SDL_CreateWindow(
             "Elementary Cellular Automaton",
@@ -133,13 +132,6 @@ int main(int argc, char* argv[]) {
         std::cout << "Can't create main renderer" << SDL_GetError() << std::endl;
         throw 1;
     }
-
-    main_texture = SDL_CreateTexture(
-        main_window_renderer,
-        SDL_PIXELFORMAT_RGBA8888,
-        SDL_TEXTUREACCESS_TARGET,
-        SCREEN_WIDTH,SCREEN_HEIGHT
-    );
 
     SDL_Event event;
 
